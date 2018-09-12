@@ -1,0 +1,170 @@
+ANGULAR
+
+Property Binding
+TS-
+hello = "this is Property Binding";
+sayhello(){
+  return this.hello = "Say Hi";
+}
+HTML-
+<input type="text" value="{{sayhello()}}" name="ebinding" name="ebinding">
+<input type="text" [value]="sayhello()" name="ebinding" name="ebinding">
+<input type="text" bind-value="sayhello()" name="ebinding" name="ebinding">
+Event Binding
+TS-
+eventBindFn(event){
+  console.log(event.target.value );
+}
+HTML-
+<input type="text" value="Event Binding" name="ebinding" name="ebinding" (keyup) = "eventBindFn($event)">
+
+Return
+TS-
+firstName = "Prasanta";
+  lastName = "Mallick";
+  demotest(){
+    return this.firstName +  this.lastName;
+  }
+HTML-
+Here are Demo text {{ demotest() }}
+
+Two way Binding
+TS-
+paraTxt = " "
+  textboxFntn(event){
+    this.paraTxt = event.target.value; 
+  }
+HTML-
+<input type="text" value="Mayabious" [(ngModel)] = "textboxFntn">
+<p>Let's dynamically create Content elements with unique index {{ textboxFntn }} </p>
+
+If else Condition
+TS-
+nameIfCon = "prasanta";
+HTML-
+<div *ngif=" nameIfCon === 'prasanta'; then firstTemplate else secondTemplate"></div>
+
+<ng-template #firstTemplate> Name is Wright</ng-template>
+<ng-template #secondTemplate> Name is Wrong</ng-template>
+
+Swich Case
+TS-
+favColor = "blue";
+HTML-
+<div [ngSwitch] = "favColor"  class="text-center">
+  <h3>This Is Switch Case </h3>
+  <div *ngSwitchCase=" 'red' ">
+    This is my favorite color {{favColor}}
+  </div>
+  <div *ngSwitchCase=" 'green' ">
+      This is my favorite color {{favColor}}
+  </div>
+  <div *ngSwitchCase=" 'blue' ">
+      This is my favorite color {{favColor}}
+  </div>
+  <div *ngSwitchDefault>
+      This is Default color Black
+  </div>
+</div>
+
+For Loop
+TS-
+thisForloop = ["Red", "Green","Blue" ]
+HTML-
+<h3 class="text-center">This Is For Loop and Numbering </h3>
+<ul class="text-center">
+  <li *ngFor="let thisForlooplisting of thisForloop; index as i;"> {{i + 1}} {{ thisForlooplisting }} </li>
+</ul>
+
+Email Capture
+TS-
+vrbllRefference = " prasantamallick@demo.com";
+  getEmail(email){
+    console.log(this.vrbllRefference);
+  }
+HTML-
+<input type="text"  class="form-control" value="{{ vrbllRefference }}" #email>
+<button (click) = "getEmail(email.value)" class="btn btn-danger">Click Here</button>
+
+Calculator
+JQUERY INCLUDE:-
+declare var jquery:any;
+declare var $ :any;
+TS-
+ngOnInit() {
+    $(".btn-success").click( function(){
+      $(".symbolchange").html("+");
+    })
+    $(".btn-primary").click( function(){
+      $(".symbolchange").html("-");
+    })
+    $(".btn-info").click( function(){
+      $(".symbolchange").html("*");
+    })
+    $(".btn-danger").click( function(){
+      $(".symbolchange").html("/");
+    })
+
+  }
+  number1: number;
+  number2: number;
+  total: number;
+  
+  addition(){
+    this.total = this.number1 + this.number2;
+    $(".class").html("+");
+  }
+  subtract(){
+    this.total = this.number1 - this.number2;
+    $(".class").html("-");
+  }
+  multi(){
+    this.total = this.number1 * this.number2;
+    $(".class").html("*");
+  }
+  divi(){
+    this.total = this.number1 / this.number2;
+    $(".class").html("/");
+  }
+HTML-
+<div class="container">
+  <h2>This is Calculator</h2>
+  <div class="card">
+    <div class="card-header">
+      <h3 class="text-center text-uppercase font-weight-bold">Calculator</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <input type="number" class="form-control" id="number1" name="number1" placeholder="Type Number" [(ngModel)] = "number1" >
+        </div>
+        <div class="col-md-6">
+          <input type="number" class="form-control" id="number2" name="number2" placeholder="Type Number" [(ngModel)] = "number2">
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-md-12 d-flex justify-content-around">
+          <input type="button" class="btn btn-success" value="ADD" (click)= "addition()">
+          <input type="button" class="btn btn-primary" value="SUBTRACT" (click)= "subtract()">
+          <input type="button" class="btn btn-info" value="MULTI" (click)= "multi()">
+          <input type="button" class="btn btn-danger" value="DIVI" (click)= "divi()">
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <p>This is total result {{ number1 }} <span class="symbolchange">+</span> {{ number2 }} = <strong>{{total}}</strong></p>
+    </div>
+  </div>
+</div>
+
+Angular Install
+npm install -g @angular/cli
+ng new my-folder-name
+cd new my-folder-name
+ng serve
+
+Font Awesome Install
+npm install font-awesome --save
+Bootstrap Install
+npm install bootstrap --save
