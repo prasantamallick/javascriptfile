@@ -1,0 +1,43 @@
+CMD=
+ng g service bio-data
+
+bio-data.service.ts=
+
+howserviceWorks(){
+    return "this is Service is works";
+  }
+  mybiodata(){
+    return[
+      {"id": 1, "name": "Leanne Graham1", "username": "Bret",   "email": "Sincere1@april.biz" },
+      {"id": 1, "name": "Leanne Graham2", "username": "Bret",   "email": "Sincere2@april.biz" },
+      {"id": 1, "name": "Leanne Graham3", "username": "Bret",   "email": "Sincere3@april.biz" }
+    ]
+  }
+
+app.Module=
+import { BioDataService } from './bio-data.service';
+providers: [BioDataService],
+
+componente.ts=
+
+public simpledata;
+public showbiodata = [];
+  constructor(private anynameBiodata : BioDataService) { }
+
+  ngOnInit() {
+
+    this.simpledata = this.anynameBiodata.howserviceWorks();
+    this.showbiodata = this.anynameBiodata.mybiodata();
+  }
+
+component.html=
+
+<div class="col-md-12">
+        {{simpledata}}
+</div>
+<br/><br/>
+<div class="col-md-12">
+        <ul *ngFor = "let data of showbiodata">
+          <li>Name : {{data.name}} Email {{data.email}}</li>
+       </ul>
+</div>

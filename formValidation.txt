@@ -1,0 +1,48 @@
+app.Module=
+import { FormsModule } from '@angular/forms';
+
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule 
+  ],
+
+
+formvalidation.component.ts=
+
+  Showvalue(fname){
+    console.log(fname)
+  }
+
+formvalidation.component.html=
+
+<form class="form-horizontal">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="name">Name:</label>
+      <div class="col-sm-10">
+<!--FIELD TYPE-->
+        <input type="text" ngModel name="firstname" minlength="5" maxlength="20" pattern="Prasanta" required class="form-control" id="firstname" placeholder="First Name" #fname = "ngModel" 
+        (click)= "Showvalue(fname)" autocomplete="off" >
+<!--CONDITION-->
+      <div class="alert alert-danger" *ngIf="!fname.valid && fname.touched">
+          <div *ngIf="fname.errors.required">Pleasee fill Fierst Name</div>
+          <div *ngIf="fname.errors.minlength">Pleasee fill Minimum 5</div>
+          <div *ngIf="fname.errors.pattern">Patern is not Matching</div>
+      </div>
+
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Password:</label>
+      <div class="col-sm-10">          
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+    </div>
+
+    <div class="form-group">        
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" name="submit"class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>

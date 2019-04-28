@@ -1,0 +1,73 @@
+APP.Module=
+
+import { Component2Component } from './component2/component2.component';
+import { TestServiceService } from './test-service.service';
+import { HttpClientModule } from '@angular/common/http';
+
+ imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule 
+  ],
+providers: [TestServiceService],
+
+test-service.ts=
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Ibiodata } from './biodatas';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TestServiceService {
+
+  constructor( private http: HttpClient ) { }
+  
+  biodata():Observable<Ibiodata[]>{
+    return this.http.get<Ibiodata[]>("http://jsonplaceholder.typicode.com/users");
+  }
+}
+
+biodata.ts=
+
+export interface Ibiodata{
+    id : number,
+    name : string,
+    username: string,
+    email: string
+}
+
+component2.ts=
+
+import { Component, OnInit } from '@angular/core';
+import { TestServiceService } from '../test-service.service';
+
+@Component({
+  selector: 'app-component2',
+  templateUrl: './component2.component.html',
+  styleUrls: ['./component2.component.scss']
+})
+export class Component2Component implements OnInit {
+  constructor(private biodataService: TestServiceService) { }
+  
+ public showdata = [];
+
+  ngOnInit() {
+    this.biodataService.biodata()
+    .subscribe(data => this.showdata = data)
+  }
+}
+
+component2.html=
+
+<ul *ngFor = "let data of showdata">
+     <li>Name : {{data.name}} Phone : {{data.phone}} Address: {{data.address.city}}</li>
+</ul>
+
+
+
+
+
+

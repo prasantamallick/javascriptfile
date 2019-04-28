@@ -1,0 +1,15 @@
+npm install bootstrap
+
+style.css=
+@import "~bootstrap/dist/css/bootstrap.css";
+=============================================
+npm install --save @ng-bootstrap/ng-bootstrap
+
+@NgModule=
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+@NgModule({
+  declarations: [AppComponent, ...],
+  imports: [NgbModule.forRoot(), ...],
+  bootstrap: [AppComponent]
+})
